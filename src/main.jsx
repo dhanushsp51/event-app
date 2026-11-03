@@ -24,7 +24,8 @@ function getPath() {
 }
 
 function navigate(path) {
-  window.history.pushState({}, '', `/event-app${path}`)
+  const basePath = window.location.pathname.startsWith('/event-app') ? '/event-app' : ''
+  window.history.pushState({}, '', `${basePath}${path}`)
   window.dispatchEvent(new PopStateEvent('popstate'))
   window.scrollTo({ top: 0, behavior: 'smooth' })
 }
