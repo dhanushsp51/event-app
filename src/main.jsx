@@ -19,12 +19,12 @@ const categories = [
 ]
 
 function getPath() {
-  const path = window.location.pathname
-  return path === '/' ? 'home' : path.slice(1)
+  const path = window.location.pathname.replace(/^\/event-app/, '')
+  return path === '/' || path === '' ? 'home' : path.slice(1)
 }
 
 function navigate(path) {
-  window.history.pushState({}, '', path)
+  window.history.pushState({}, '', `/event-app${path}`)
   window.dispatchEvent(new PopStateEvent('popstate'))
   window.scrollTo({ top: 0, behavior: 'smooth' })
 }
